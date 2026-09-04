@@ -1,4 +1,4 @@
 Django==6.1.1
 python-dotenv==1.2.3
-crispy-forms
+django-crispy-forms
 gunicorn
