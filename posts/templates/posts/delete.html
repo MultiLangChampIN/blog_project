@@ -1,0 +1,38 @@
+{% extends "posts/parent.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content%}
+
+<div class="main-container">
+    <div class="topbar">
+        <h1 class="title">Delete a blog post</h1>
+    </div>
+    <div class="post-delete">
+        
+        <div class="content-section">
+            <h2  class="post-title">{{blog.title}}</h2>
+            <div class="post-date">
+                {{blog.created_on|date:"F j,Y"}}
+            </div>
+            <div class="post-content">
+                <p>{{blog.content| truncatechars:200}}</p>
+            </div>  
+            <div class="post-delete-img">
+            {% if blog.image %}
+                <img src="{{blog.image.url}}" alt="{{blog.title}}">
+            {% endif %}
+            </div>         
+        </div>              
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p class="delete-text">Are you sure want to delete this post</p>
+        <button type=submit class="btn btn-danger">  YES, delete</button>
+        <a href="{% url 'home'  %}" class="btn btn-secondary">cancle </a>
+    </form> 
+        
+   
+</div>
+
+{% endblock %}

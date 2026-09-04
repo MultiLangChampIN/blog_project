@@ -1,0 +1,58 @@
+{% extends "posts/parent.html" %}
+{% load crispy_forms_tags %}    
+   
+    {% block content%}
+    <div class="main-container"> 
+        <h1>Welcome to our blogs   </h1> 
+        
+            {% if blogcount == 0%}
+            <p> there is no post </p>
+            {% endif %}
+
+        
+
+        {% for blog in blogs %}
+        <div class="post">
+            <div class="post-img">
+                {% if blog.image %}
+                <img src="{{blog.image.url}}" alt="{{blog.title}}">
+                {% endif %}
+
+            </div>
+            <div class="content-section">
+                <h2  class="post-title">{{blog.title}}</h2>
+                <div class="post-date">
+                    {{blog.created_on|date:"F j,Y"}}
+                </div>
+                {% if blog.category %}
+                    <p >
+                        {{blog.category.name}}
+                    </p>
+                    
+                {% endif %}
+                <p>by {{blog.created_by.username}}</p>
+               
+                <div class="post-content">
+                    <p>{{blog.content| truncatechars:200}}</p>
+                </div>
+
+                {% if blog.tags.all %}
+                    <div class="post-tags">
+                        {% for tag in blog.tags.all  %}
+                            <span> # {{tag.name}}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="post-buttons">
+                    <a href="{% url 'details' blog.id %}" class="btn btn-outline-primary">Read more... </a>
+                   
+                </div>
+
+            </div>         
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% endblock  %}
+        
+        

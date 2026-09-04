@@ -1,0 +1,28 @@
+{% extends "posts/parent.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content%}
+
+<div class="main-container">
+    <div class="topbar">
+        <h2  class="post-title">{{blog.title}}</h2>
+    </div>
+    <div class="post-detail-img">
+        {% if blog.image %}
+            <img src="{{blog.image.url}}" alt="{{blog.title}}">
+        {% endif %}
+    </div> 
+    <div class="content-section">
+        <div class="post-date">
+            {{blog.created_on|date:"F j,Y"}}
+            <p>by {{blog.created_by.username}}</p>
+        </div>
+        <div class="post-detail-content">
+            <p>{{blog.content|linebreaks}}</p>
+        </div>  
+                
+    </div>               
+</div>
+
+{% endblock %}

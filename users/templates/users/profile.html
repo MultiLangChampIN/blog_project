@@ -1,0 +1,18 @@
+{% extends "posts/parent.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content%}
+
+<div class="main-container">
+    <div class="topbar">
+        <h1 class="title">edit your profile</h1>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary">update </button>
+    </form>
+</div>
+
+{% endblock %}
